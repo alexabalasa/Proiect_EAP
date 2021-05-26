@@ -1,137 +1,180 @@
 package com.company;
-
+import com.company.clase.csv.serii_adaugare;
+import com.company.clase.csv.serii_afisare;
+import com.company.clase.csv.profesori_adaugare;
+import com.company.clase.csv.profesori_afisare;
+import com.company.clase.csv.studenti_afisare;
+import com.company.clase.csv.specializare_afisare;
+import com.company.clase.csv.studenti_adaugare;
+import com.company.clase.csv.grupe_afisare;
+import com.company.clase.csv.laboratoare_afisare;
+import com.company.clase.csv.locatie_afisare;
+import com.company.clase.csv.amfiteatre_afisare;
+import com.company.clase.csv.materii_afisare;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Scanner;
 
-public class Meniu implements ServiciiMeniu{
+public class Meniu implements ServiciiMeniu {
+    Scanner scanner = new Scanner(System.in);
+
+    ArrayList<Specializari> listS = new ArrayList<Specializari>();
+    ArrayList<Studenti> list = new ArrayList<Studenti>();
+    ArrayList<Profesori> listP = new ArrayList<Profesori>();
+    ArrayList<Serii> listSerie = new ArrayList<Serii>();
+    ArrayList<Grupe> listG = new ArrayList<Grupe>();
+    ArrayList<Laboratoare> listL = new ArrayList<Laboratoare>();
+    ArrayList<Locatie> listLo = new ArrayList<Locatie>();
+    ArrayList<Amfiteatre> listA = new ArrayList<Amfiteatre>();
+    ArrayList<Materii> listM= new ArrayList<Materii>();
+
     public void meniu() {
 
-        add_specializare();
-        add_serii();
-        add_grupe();
-        add_materii();
-        add_studenti();
-        add_profesori();
-        add_locatie();
-        add_laboratoare();
-        add_amfiteatre();
+        System.out.println("Alege o optiune : ");
+        System.out.println(" 1. Afiseaza specializari \n 2. Afiseaza serii \n 3. Adauga serii \n 4. Afiseaza grupe \n 5. Afiseaza studenti \n 6. " +
+                "Adauga studenti \n 7. Afiseaza profesori \n 8. Adauga profesori \n 9. Afiseaza materii \n 10. Afiseaza locatia facultatii \n 11. Afiseaza laboraotarele \n 12. Afiseaza amfiteatrele");
+
+
+        specializare_afisare.citire(listS);
+        studenti_afisare.citire(list);
+        serii_afisare.citire(listSerie);
+        profesori_afisare.citire(listP);
+        grupe_afisare.citire(listG);
+        laboratoare_afisare.citire(listL);
+        locatie_afisare.citire(listLo);
+        amfiteatre_afisare.citire(listA);
+        materii_afisare.citire(listM);
+
+        char optiune;
+        optiune = scanner.next().charAt(0);
+        switch (optiune) {
+            case 1:
+                afisare_specializare();
+                break;
+            case 2:
+                afisare_serii();
+                break;
+            case 3:
+                adauga_serie();
+                break;
+            case 4:
+                afisare_grupe();
+                break;
+            case 5:
+                afisare_studenti();
+                break;
+            case 6:
+                adauga_studenti();
+                break;
+            case 7:
+                afisare_profesori();
+                break;
+            case 8:
+                adauga_profesori();
+                break;
+            case 9:
+                afisare_materii();
+                break;
+            case 10:
+                afisare_locatie();
+                break;
+            case 11:
+                afisare_laboratoare();
+                break;
+            case 12:
+                afisare_amfiteatre();
+                break;
+        }
+    }
+
+    private void adauga_profesori() {
+        String nume = "";
+        String prenume = "";
+        String departament = "";
+        String email = "";
+        Profesori profesor = new Profesori(nume, prenume, departament, email);
+        listP.add(profesor);
+        profesori_adaugare.afisare(nume, prenume, departament, email);
+    }
+
+    private void adauga_studenti() {
+        String nume = "";
+        String prenume = "";
+        int nr_legitimatie = 0;
+        String email = "";
+        Studenti student = new Studenti(nume, prenume, nr_legitimatie, email);
+        list.add(student);
+        studenti_adaugare.afisare(nume, prenume, nr_legitimatie, email);
+
 
     }
-@Override
-    public void add_amfiteatre() {
-    List<Amfiteatre> listA = new ArrayList<Amfiteatre>();
-    Amfiteatre a1= new Amfiteatre("Spiru Haret", 1);
-    Amfiteatre a2= new Amfiteatre("Gheoghe Pascu", 2);
-    Amfiteatre a3= new Amfiteatre("Lazar Gh", 3);
-    listA.add(a1);
-    listA.add(a2);
-    listA.add(a3);
-    for(Amfiteatre a:listA){
-        System.out.println(a.getNume() + " " + a.getEtaj() + " ");
 
+    private void adauga_serie() {
+        String denumire = "";
+        String forma_invatamant = "";
+        int nr_serie = 0;
+        String reprezentant_serie = "";
+        int nr_studenti = 0;
+        Serii serie = new Serii(denumire, forma_invatamant, nr_serie, reprezentant_serie, nr_studenti);
+        listSerie.add(serie);
+        serii_adaugare.afisare(denumire, forma_invatamant, nr_serie, reprezentant_serie, nr_studenti);
     }
-    }
+
 
     @Override
-    public void add_laboratoare() {
-        List<Laboratoare> listL= new ArrayList<Laboratoare>();
-        Laboratoare lab1= new Laboratoare("informatica",3, 321);
-        Laboratoare lab2= new Laboratoare("fizica",2, 211);
-        Laboratoare lab3= new Laboratoare("chimie",1, 120);
-        listL.add(lab1);
-        listL.add(lab2);
-        listL.add(lab3);
-        for(Laboratoare lab:listL){
+    public void afisare_amfiteatre() {
+        for (Amfiteatre a : listA) {
+            System.out.println(a.getNume() + " " + a.getEtaj() + " ");
+        }
+    }
+    @Override
+    public void afisare_laboratoare() {
+        for (Laboratoare lab : listL) {
             System.out.println(lab.getTip() + " " + lab.getEtaj() + " " + lab.getNumar() + " ");
         }
     }
-
     @Override
-    public void add_locatie() {
-    Locatie l1= new Locatie("Bucuresti", "Str Unirii", 2, "031223112");
-    Locatie l2= new Locatie("Sibiu", "Str Victoriei", 3, "031231312");
-    Locatie l3= new Locatie("Craiova", "Str Unirii", 12, "02218312");
+    public void afisare_locatie() {
+        for (Locatie lo : listLo) {
+            System.out.println(lo.getOras() + " " + lo.getStrada() + " " + lo.getNumar() + " " + lo.getContact() + " ");
+        }
     }
-
     @Override
-    public void add_profesori() {
-    List<Profesori> listP= new ArrayList<Profesori>();
-    Profesori p1= new Profesori("Poescu", "Anghel", "matematica", "popescu@yahoo.com");
-    Profesori p2= new Profesori("Vasile", "Cornel", "informatica", "vsl@gmai.com");
-    listP.add(p1);
-    listP.add(p2);
-
-    for( Profesori p:listP){
-        System.out.println(p.getNume() + " " + p.getPrenume() + " "+ p.getDepartament() + " " + p.getMail() + " ");
+    public void afisare_profesori() {
+        for (Profesori p : listP) {
+            System.out.println(p.getNume() + " " + p.getPrenume() + " " + p.getDepartament() + " " + p.getMail() + " ");
+        }
     }
-    }
-
     @Override
-    public void add_studenti() {
-        List<Studenti> list = new ArrayList<Studenti>();
-        Studenti s1 = new Studenti("Balasa", "Alexandra", 3,"alexandra.balasa@s.unibuc.ro");
-        Studenti s2 = new Studenti("Maticiuc", "Mihai", 30,"mati.mihai@s.unibuc.ro");
-        Studenti s3 = new Studenti("Popescu", "Alex", 20,"alex.popescu@s.unibuc.ro");
-
-        list.add(s1);
-        list.add(s2);
-        list.add(s3);
-
-        for(Studenti s:list){
+    public void afisare_studenti() {
+        for (Studenti s : list) {
             System.out.println(s.getNume() + " " + s.getPrenume() + " " + s.getNr_legitimatie() + " " + s.getEmail() + " ");
         }
-        Iterator itr= list.iterator();
-        while(itr.hasNext()){
-            System.out.println((itr.next()));
+    }
+    @Override
+    public void afisare_materii() {
+        for(Materii m:listM){
+            System.out.println(m.getNume()+ " " + m.getNr_credite() + " "+ m.getAn_studiu() + " "+ m.getSemestru() + " ");
         }
     }
-
     @Override
-    public void add_materii() {
-        Materii bd = new Materii("Baze de date",5,2,1);
-        Materii cn= new Materii("Calcul numeric", 5,1, 2);
-        Materii cn2= new Materii("Calculatoare numerice", 4,2 ,2);
-        Materii poo= new Materii("Programare orientata pe obiecte", 5,2, 1);
-
-    }
-
-    @Override
-    public void add_grupe() {
-        List<Grupe> listG = new ArrayList<Grupe>();
-        Grupe g1 = new Grupe(1, " Miruna Ana", 25);
-        Grupe g2= new Grupe(2, "Codrin Andrei", 23);
-        Grupe g3= new Grupe(3, "Brasi Alex", 24);
-        Grupe g4= new Grupe(4,"Balasa Alexa", 28);
-        listG.add(g1);
-        listG.add(g2);
-        listG.add(g3);
-        listG.add(g4);
-        for ( Grupe gp:listG) {
+    public void afisare_grupe() {
+        for (Grupe gp : listG) {
             System.out.println(gp.getNr_grupa() + " " + gp.getNr_studenti() + " " + gp.getSef_grupa() + " ");
         }
     }
-
     @Override
-    public void add_serii() {
-        Serii s25 = new Serii( "CTI", "ID", 25, "Popescu Marcel", 100);
-        Serii s15 = new Serii( "CTI", "ID", 15, "Mihnea Alex", 100);
-        Serii s33 = new Serii( "info", "IF", 33, "Daria Alexa", 300);
-        Serii s41 = new Serii( "mate", "IF", 41, "Matei Miruna", 210);
-    }
-
-    @Override
-    public  void add_specializare() {
-        List<Specializari> listS = new ArrayList<Specializari>();
-        Specializari mate = new Specializari("Matematica", "IF");
-        Specializari info = new Specializari("Informatica", "IF");
-        Specializari CTI = new Specializari("Calculatoare si Tehnologia Informatiei", "ID");
-        listS.add(mate);
-        listS.add(info);
-        listS.add(CTI);
-        for(Specializari sp:listS){
+    public void afisare_specializare() {
+        for (Specializari sp : listS) {
             System.out.println(sp.getDenumire() + " " + sp.getForma_invatamant() + " ");
         }
     }
-
+    @Override
+    public void afisare_serii() {
+        for (Serii serie : listSerie) {
+            System.out.println(serie.getDenumire()+ " " + serie.getForma_invatamant() + " "
+                    +serie.getNr_serie()+ " "+ serie.getReprezentant_serie()+" "+ serie.getNr_studenti() + " ");
+        }
+    }
 }
+
+

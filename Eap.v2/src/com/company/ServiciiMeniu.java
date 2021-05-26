@@ -1,13 +1,13 @@
 package com.company;
 
 public interface ServiciiMeniu {
-    public  void add_specializare() ;
-    public void add_serii();
-    public void add_grupe() ;
-    public void add_materii() ;
-    public void add_studenti();
-    public  void add_profesori();
-    public void add_locatie();
-    public void add_laboratoare();
-    void add_amfiteatre();
+    void afisare_specializare() ;
+    void afisare_serii();
+    void afisare_grupe() ;
+    void afisare_materii() ;
+    void afisare_studenti();
+    void afisare_profesori();
+    void afisare_locatie();
+    void afisare_laboratoare();
+    void afisare_amfiteatre();
     }

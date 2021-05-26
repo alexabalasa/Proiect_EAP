@@ -6,6 +6,22 @@ public class Materii {
     private int an_studiu;
     private int semestru;
 
+    public String getNume() {
+        return nume;
+    }
+
+    public int getNr_credite() {
+        return nr_credite;
+    }
+
+    public int getAn_studiu() {
+        return an_studiu;
+    }
+
+    public int getSemestru() {
+        return semestru;
+    }
+
     public Materii(String nume, int nr_credite, int an_studiu, int semestru) {
 
         this.nume = nume;

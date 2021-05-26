@@ -6,6 +6,22 @@ public class Locatie {
     private int numar;
     private String contact;
 
+    public String getOras() {
+        return oras;
+    }
+
+    public String getStrada() {
+        return strada;
+    }
+
+    public int getNumar() {
+        return numar;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
     public Locatie(String oras, String strada, int numar, String contact) {
         this.oras = oras;
         this.strada = strada;

@@ -11,7 +11,7 @@ public class Studenti  {
     public Studenti(String nume, String prenume, int nr_legitimatie, String email) {
         this.nume = nume;
         this.prenume = prenume;
-        this.nr_legitimatie = nr_legitimatie;
+        this.nr_legitimatie= nr_legitimatie;
         this.email = email;
     }
 

@@ -12,6 +12,18 @@ public class Serii extends Specializari {
         this.nr_studenti = nr_studenti;
     }
 
+    public int getNr_serie() {
+        return nr_serie;
+    }
+
+    public String getReprezentant_serie() {
+        return reprezentant_serie;
+    }
+
+    public int getNr_studenti() {
+        return nr_studenti;
+    }
+
     public void print(){
         System.out.println("Seria cu numarul:" + nr_serie);
         System.out.println("Reprezentantul seriei " +nr_serie +" : " +reprezentant_serie );
